@@ -1,11 +1,10 @@
 package interview;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-public class DuplicateCharPrintingInString {
+public class VirusProblem {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -21,8 +20,8 @@ public class DuplicateCharPrintingInString {
 		}
 	}
 	public static char getRepeatChar(String str) {
-		
-		List<Character> chars = new ArrayList() ;
+		int max = 2 ;
+		char ch1 = 'z'  ;
 		for (int i = 0; i < str.length(); ) {
 			char ch = str.charAt(0) ;
 			int count=1 ;
@@ -32,13 +31,21 @@ public class DuplicateCharPrintingInString {
 					count ++ ;
 				}
 			}
-			if( count > 1) {
-				chars.add(ch) ;
+			if( count == max) {
+				if(ch < ch1) {
+					ch1 = ch ;
+				}
 			}
+			else if(count > max ) {
+				ch1 = ch ;
+				max = count ;
+			}
+			System.out.println(ch);
+			System.out.println(count);
 			str = str.replaceAll(ch+"", "") ;
 		}		
-		Collections.sort(chars);	
-		return chars.get(0) ;
+			
+		return ch1 ;
 	}
 
 }
